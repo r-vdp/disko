@@ -32,7 +32,7 @@
       inherit config options;
       default = ''
         if ! (blkid '${config.device}' | grep -q 'TYPE='); then
-          pvcreate ${config.device}
+          pvcreate --force ${config.device}
         fi
         echo "${config.device}" >>"$disko_devices_dir"/lvm_${config.vg}
       '';
